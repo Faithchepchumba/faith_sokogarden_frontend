@@ -101,7 +101,7 @@ const SignupComponent = () => {
                             }}
                             value={password}
                         /> <br />
-                        <button className="btn btn-dark">
+                        <button className="btn btn-info">
                             Sign Up
                         </button> <br />
                         <Link to="/signin">Already have an account? signin </Link>
