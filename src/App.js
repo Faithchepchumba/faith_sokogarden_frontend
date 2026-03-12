@@ -6,6 +6,7 @@ import AddProductComponent from './components/AddProductComponent';
 import Navbar from './components/Navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import GetProductsComponent from './components/GetProductsComponent';
+import"bootstrap/dist/js/bootstrap.min.js"
 
 
 function App() {
