@@ -2,15 +2,19 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const SignupComponent = () => {
-    let [username,updateUsername] =useState("");
-    let[email,updateEmail] =useState("");
-    let[phone,updatePhone]=useState("");
-    let[password,updatePassword]=useState("");
+    let [username, updateUsername] =useState("");
+    let[email, updateEmail] =useState("");
+    let[phone, updatePhone]=useState("");
+    let[password, updatePassword]=useState("");
     
     let[loading,setLoading] =useState("");
     let[error,setError] =useState("");
     let[success,setSuccess]=useState("");
+
+    
+
 
     const handleSubmit =async(e)=>{
         // pevent default behaviour
@@ -32,7 +36,7 @@ const SignupComponent = () => {
             user_data.append("phone",phone);
             user_data.append("password",password);
             // use axios to send data to server
-            const response =await axios.post("https://faith.alwaysdata.net/api/signup",user_data)
+            const response =await axios.post("https://kmuturi.alwaysdata.net/api/signup",user_data)
             console.log(response)
             if(response.status ===200){
                 setSuccess(response.data.message);
