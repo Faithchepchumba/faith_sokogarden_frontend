@@ -25,7 +25,7 @@ const SignInComponent =() =>{
             const user_data =new FormData();
             user_data.append("email",email);
             user_data.append("password",password);
-            const response = await axios.post ("https://kmuturi.alwaysdata.net/api/signin",
+            const response = await axios.post("https://kmuturi.alwaysdata.net/api/signin",
                 user_data,
             );
             console.log(response);
@@ -40,7 +40,8 @@ const SignInComponent =() =>{
 
         } catch (error) {
             console.log(error)
-            setError("")
+            setError(error.message);
+            setLoading("")
 
             
             

@@ -22,7 +22,7 @@ function App() {
             <Route path ='/signup' element={<SignupComponent/>}/>
             <Route path ='/signin' element={<SignInComponent/>}/>
             <Route path='/addproduct' element={<AddProductComponent/>}/>
-            <Route path='/getproduct'element={<GetProductsComponent/>}/>
+            <Route path='/'element={<GetProductsComponent/>}/>
 
           </Routes>
         </div>
