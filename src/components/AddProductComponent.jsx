@@ -29,7 +29,7 @@ const AddProductComponent =()=> {
             product_data.append("product_category",product_category);
             product_data.append("product_image",product_image);
             // use axios (messenger) to send the data to the server
-            const response =await axios.post("https://kmuturi.alwaysdata.net/api/add_product",product_data);
+            const response =await axios.post("https://faith.alwaysdata.net/api/add_product",product_data);
             console.log(response);
             if (response.status === 200) {
                 setLoading("");
