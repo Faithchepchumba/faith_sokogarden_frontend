@@ -1,7 +1,84 @@
+import axios from "axios";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 const MakePaymentComponent=()=>{
+
+    const { product} = useLocation().state || {}
+    console.log(product)
+    const img_url ="https://kmuturi.alwaysdata.net/static/images/"
+
+    let[phone,setPhone]=useState("");
+    let[loading, setLoading] =useState("");
+    let[error, setError] =useState("");
+    let[success,setSuccess ] =useState("");
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault()
+
+        setError("")
+        setLoading("Please wait...")
+        setSuccess("")
+        try {
+            const data =new FormData();
+            data.append("amount",product.product_cost)
+            data.append("phone",phone)
+            const response = await axios.post("https://kmuturi.alwaysdata.net/api/mpesa_payment",data)
+            console.log(response)
+            if(response.status===200){
+                setLoading("")
+                setSuccess(response.data.message);
+                setPhone("")
+            }
+
+            
+        } catch (error) {
+            setLoading("")
+            setError(error.message);
+            
+        }
+
+    }
+
     return(
-        <div>
-            <h1>Make Payment Component</h1>
+        <div className="row justify-content-center mt-4">
+            <h2>LIPA NA MPESA</h2>
+            <div className="col-md-3">
+                <img src={img_url+product.product_image} alt="" className="rounded img-thumbnail" />
+
+            </div>
+            <div className="col-md-3 p-4">
+                <h2 className="text-dark">{product.product_name}</h2>
+                <h4 className="text-primary">{product.product_category}</h4>
+                <p className="text-muted">{product.product_description}</p>
+                <h4 className="text-warning btn btn-success">{product.product_cost}</h4>
+                <hr />
+                <h6 className="text-success">{success}</h6>
+                <h6 className="text-danger">{error}</h6>
+                <h6 className="text-warning">{loading}</h6>
+                <form onSubmit={handleSubmit}>
+                    <input 
+                    type="number"
+                     className="form-control" 
+                     required
+                     placeholder="Enter Amount"
+                     readOnly
+                     value={product.product_cost}
+                     />
+                     <br />
+                     <input
+                     type="tel"
+                     className="form-control"
+                     placeholder="Enter MPESA NO 2547XXXXXXXXXX"
+                     required
+                     onChange={(e)=>{setPhone(e.target.value)}}
+                      />
+                      <br />
+                      <button className="btn btn-dark">Pay Now</button>
+                </form>
+            </div>
+           
+           
         </div>
     )
 

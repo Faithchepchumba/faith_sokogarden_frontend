@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const GetProductsComponent= () => {
 
@@ -9,6 +10,7 @@ const GetProductsComponent= () => {
 
     // base url for image location
     const img_url ="https://kmuturi.alwaysdata.net/static/images/"
+    let navigator =useNavigate()
 
     // fuction to fetch products from server
     const getProducts = async () =>{
@@ -37,7 +39,7 @@ const GetProductsComponent= () => {
             <h5 className="text-warning">{loading}</h5>
             <h5 className="text-danger">{error}</h5>
 
-            {/* map/ loop over the product array to access one at a time */}
+            {/* map/ loop over the product array to access one product at a time */}
             {products.map((product)=> (
 
          <div className="col-md-3 justify-content-center mb-4">
@@ -48,7 +50,7 @@ const GetProductsComponent= () => {
                     <p className="text-muted">{product.product_description}</p>
                     <b className="text-warning">{product.product_cost}</b>
                     <br />
-                    <button className="btn btn-dark">Purchase now</button>
+                    <button className="btn btn-dark" onClick={()=>{navigator("makepayment",{ state: {product} })}}>Purchase now</button>
                 </div>
             </div>
          </div>

@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import "bootstrap/dist/css/bootstrap.min.css";
 import GetProductsComponent from './components/GetProductsComponent';
 import"bootstrap/dist/js/bootstrap.min.js"
+import MakePaymentComponent from "./components/MakePaymentComponent";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path ='/signin' element={<SignInComponent/>}/>
             <Route path='/addproduct' element={<AddProductComponent/>}/>
             <Route path='/'element={<GetProductsComponent/>}/>
+            <Route path='/makepayment' element={<MakePaymentComponent/>}/>
 
           </Routes>
         </div>
